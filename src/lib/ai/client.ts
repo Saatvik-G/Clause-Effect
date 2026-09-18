@@ -16,7 +16,7 @@ export function getGeminiClient(): GoogleGenAI {
 }
 
 export function getModelName(): string {
-  return process.env.GEMINI_MODEL ?? "gemini-2.0-flash";
+  return process.env.GEMINI_MODEL ?? "gemini-3.6-flash";
 }
 
 export function hasApiKey(): boolean {
