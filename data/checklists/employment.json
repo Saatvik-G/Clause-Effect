@@ -1,0 +1,15 @@
+{
+  "type": "employment",
+  "protections": [
+    { "id": "e1", "name": "Salary and payment schedule", "description": "Clear statement of compensation and when it is paid", "critical": true },
+    { "id": "e2", "name": "Notice period (both ways)", "description": "How much notice employer and employee must give to end employment", "critical": true },
+    { "id": "e3", "name": "Non-compete scope and duration", "description": "Non-compete clauses should be reasonable in time and geography", "critical": true },
+    { "id": "e4", "name": "IP ownership clarity", "description": "What work product is owned by employer vs employee", "critical": true },
+    { "id": "e5", "name": "Probation period terms", "description": "Duration and termination rights during probation", "critical": true },
+    { "id": "e6", "name": "Leave entitlements", "description": "Annual leave, sick leave, maternity/paternity leave", "critical": true },
+    { "id": "e7", "name": "Termination for cause definition", "description": "What constitutes grounds for immediate termination", "critical": true },
+    { "id": "e8", "name": "Bonus or variable pay conditions", "description": "Conditions under which bonus/variable pay is earned and paid", "critical": false },
+    { "id": "e9", "name": "Confidentiality obligations post-employment", "description": "Duration and scope of post-employment confidentiality", "critical": false },
+    { "id": "e10", "name": "Dispute resolution", "description": "How disputes will be handled", "critical": false }
+  ]
+}

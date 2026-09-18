@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+/* ── Design Tokens ────────────────────────────────────────────────────────── */
+:root {
+  /* Palette — "The Case Desk" */
+  --paper:     #F3EDE0;
+  --ink:       #15120E;
+  --highlight: #FFE14D;
+  --stamp-red: #E23B2E;
+  --pen-blue:  #2340E8;
+  --safe:      #23A26D;
+  --caution:   #F08A24;
+  --paper-dark: #E8DFC8;
+  --ink-muted: #5C5449;
+  --shadow:    rgba(21, 18, 14, 0.15);
+
+  /* Semantic aliases */
+  --bg:        var(--paper);
+  --fg:        var(--ink);
+  --surface:   #FBF7EE;
+  --border:    rgba(21, 18, 14, 0.15);
+  --muted:     var(--ink-muted);
+
+  /* Risk colours */
+  --risk-low:     var(--safe);
+  --risk-medium:  var(--caution);
+  --risk-high:    var(--stamp-red);
+  --risk-unusual: var(--pen-blue);
+}
+
+/* Night-shift theme */
+.dark {
+  --bg:        #1A1510;
+  --fg:        #E8DFC8;
+  --surface:   #241E17;
+  --border:    rgba(232, 223, 200, 0.12);
+  --muted:     #8C7E6E;
+  --shadow:    rgba(0, 0, 0, 0.4);
+  --paper:     #241E17;
+  --ink:       #E8DFC8;
+  --paper-dark: #1A1510;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-newsreader), Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ── Typography ───────────────────────────────────────────────────────────── */
+.font-display {
+  font-family: var(--font-bricolage), 'Helvetica Neue', Arial, sans-serif;
+}
+.font-mono {
+  font-family: var(--font-jetbrains), 'Courier New', monospace;
+}
+.font-margin {
+  font-family: var(--font-caveat), cursive;
+}
+.font-body {
+  font-family: var(--font-newsreader), Georgia, serif;
+}
+
+/* ── Focus styles (WCAG AA) ───────────────────────────────────────────────── */
+:focus-visible {
+  outline: 3px solid var(--pen-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Paper texture overlay ────────────────────────────────────────────────── */
+.paper-texture {
+  position: relative;
+  isolation: isolate;
+}
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+/* ── Paper sheet shadow ───────────────────────────────────────────────────── */
+.paper-sheet {
+  background: var(--surface);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.6) inset,
+    0 4px 8px var(--shadow),
+    0 12px 32px rgba(21, 18, 14, 0.08);
+  border: 1px solid var(--border);
+}
+
+/* ── Risk colours ─────────────────────────────────────────────────────────── */
+.risk-low    { --risk-color: var(--safe); }
+.risk-medium { --risk-color: var(--caution); }
+.risk-high   { --risk-color: var(--stamp-red); }
+.risk-unusual { --risk-color: var(--pen-blue); }
+
+/* ── Highlight animation ──────────────────────────────────────────────────── */
+.highlight-sweep {
+  position: relative;
+  display: inline;
+}
+.highlight-sweep::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 100%;
+  background: var(--highlight);
+  opacity: 0.45;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+.highlight-sweep.active::after {
+  transform: scaleX(1);
+}
+
+/* ── Stamp ────────────────────────────────────────────────────────────────── */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border: 2px solid currentColor;
+  border-radius: 2px;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transform-origin: center;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ── Reduced motion ───────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Motion disabled class (in-app toggle) */
+.motion-disabled *, .motion-disabled *::before, .motion-disabled *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* ── Marquee ──────────────────────────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+}
+.motion-disabled .marquee-track {
+  animation: none;
+}
+
+/* ── Print styles ─────────────────────────────────────────────────────────── */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; }
+  .paper-sheet { box-shadow: none; border: 1px solid #ccc; }
+}

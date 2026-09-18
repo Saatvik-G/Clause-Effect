@@ -1,0 +1,13 @@
+{
+  "type": "insurance",
+  "protections": [
+    { "id": "i1", "name": "Coverage exclusions", "description": "What is explicitly not covered", "critical": true },
+    { "id": "i2", "name": "Pre-existing condition clause", "description": "Whether pre-existing conditions are covered", "critical": true },
+    { "id": "i3", "name": "Claim filing deadline", "description": "Time limit to file a claim", "critical": true },
+    { "id": "i4", "name": "Sub-limits on coverage", "description": "Lower limits within the overall coverage amount", "critical": true },
+    { "id": "i5", "name": "Premium revision rights", "description": "Whether insurer can raise premiums and under what conditions", "critical": true },
+    { "id": "i6", "name": "Cancellation terms", "description": "How either party can cancel the policy", "critical": false },
+    { "id": "i7", "name": "Deductible amounts", "description": "Amount you must pay before insurance kicks in", "critical": false },
+    { "id": "i8", "name": "Dispute / arbitration process", "description": "How claim disputes are resolved", "critical": false }
+  ]
+}

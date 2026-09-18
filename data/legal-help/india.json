@@ -1,0 +1,51 @@
+{
+  "country": "India",
+  "notice": "This directory is for general awareness only. Always verify contact details and eligibility directly with the organisation before relying on them. This is not a referral or endorsement.",
+  "organisations": [
+    {
+      "id": "nalsa",
+      "name": "National Legal Services Authority (NALSA)",
+      "description": "Government body providing free legal aid to eligible persons",
+      "eligibility": "Income below threshold, women, children, SC/ST, disabled persons",
+      "website": "https://nalsa.gov.in",
+      "helpline": "15100",
+      "verified": true
+    },
+    {
+      "id": "slsa",
+      "name": "State Legal Services Authorities (SLSA)",
+      "description": "State-level legal aid — contact your state's SLSA",
+      "eligibility": "Varies by state",
+      "website": "https://nalsa.gov.in/lsams",
+      "helpline": "Contact your district legal services authority",
+      "verified": true
+    },
+    {
+      "id": "consumer-helpline",
+      "name": "National Consumer Helpline",
+      "description": "Help with consumer complaints against goods and services",
+      "eligibility": "Any consumer",
+      "website": "https://consumerhelpline.gov.in",
+      "helpline": "1800-11-4000 or 14404",
+      "verified": true
+    },
+    {
+      "id": "labour-helpline",
+      "name": "Ministry of Labour Helpline",
+      "description": "Complaints about employment, wages, labour rights",
+      "eligibility": "All workers",
+      "website": "https://labour.gov.in",
+      "helpline": "1800-11-1250",
+      "verified": true
+    },
+    {
+      "id": "rera",
+      "name": "Real Estate Regulatory Authority (RERA)",
+      "description": "Complaints about real estate transactions and rental disputes in some states",
+      "eligibility": "Home buyers and tenants in RERA-registered properties",
+      "website": "https://rera.gov.in",
+      "helpline": "Visit your state RERA website",
+      "verified": true
+    }
+  ]
+}

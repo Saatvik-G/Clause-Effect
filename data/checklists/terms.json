@@ -1,0 +1,13 @@
+{
+  "type": "terms",
+  "protections": [
+    { "id": "t1", "name": "Data collection scope", "description": "What personal data is collected", "critical": true },
+    { "id": "t2", "name": "Data sharing with third parties", "description": "Who data is shared with", "critical": true },
+    { "id": "t3", "name": "Account termination rights", "description": "Under what conditions account can be terminated", "critical": true },
+    { "id": "t4", "name": "Arbitration / class action waiver", "description": "Waiver of right to sue in court or as part of class", "critical": true },
+    { "id": "t5", "name": "Unilateral changes to terms", "description": "Whether company can change terms without consent", "critical": true },
+    { "id": "t6", "name": "Data retention and deletion", "description": "How long data is kept and how to delete it", "critical": false },
+    { "id": "t7", "name": "Liability limitation", "description": "Caps on company liability", "critical": false },
+    { "id": "t8", "name": "Governing law and jurisdiction", "description": "Where disputes must be filed", "critical": false }
+  ]
+}

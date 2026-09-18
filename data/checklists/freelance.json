@@ -1,0 +1,15 @@
+{
+  "type": "freelance",
+  "protections": [
+    { "id": "f1", "name": "Payment terms and schedule", "description": "When and how payment is made", "critical": true },
+    { "id": "f2", "name": "Scope of work definition", "description": "Clear description of what is included", "critical": true },
+    { "id": "f3", "name": "IP ownership of deliverables", "description": "Who owns the work product", "critical": true },
+    { "id": "f4", "name": "Revision / change request process", "description": "How changes beyond scope are handled and priced", "critical": true },
+    { "id": "f5", "name": "Termination rights and kill fee", "description": "What happens if project is cancelled mid-way", "critical": true },
+    { "id": "f6", "name": "Late payment penalty", "description": "Interest or fees for late client payment", "critical": false },
+    { "id": "f7", "name": "Portfolio / attribution rights", "description": "Can freelancer show work in portfolio", "critical": false },
+    { "id": "f8", "name": "Non-compete / non-solicitation scope", "description": "Restrictions on working with competitors", "critical": true },
+    { "id": "f9", "name": "Liability limitation", "description": "Cap on freelancer's liability", "critical": false },
+    { "id": "f10", "name": "Dispute resolution", "description": "How disputes are resolved", "critical": false }
+  ]
+}

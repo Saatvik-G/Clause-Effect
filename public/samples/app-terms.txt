@@ -1,0 +1,35 @@
+TERMS OF SERVICE AND PRIVACY POLICY
+TaskFlow App by Petal Technologies Private Limited
+Last Updated: 1 January 2024
+
+By downloading, accessing, or using the TaskFlow application ("App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, do not use the App.
+
+1. ACCEPTANCE AND CHANGES
+Petal Technologies reserves the right to modify these Terms at any time. Continued use of the App after changes are posted constitutes acceptance of the revised Terms. We may not provide individual notice of changes. You are responsible for reviewing Terms periodically.
+
+2. ACCOUNT AND DATA COLLECTION
+To use the App, you must create an account. We collect: (a) personal information including your name, email, phone number, and profile photo; (b) all tasks, notes, and content you create in the App; (c) device information, IP address, and usage data including every action you take in the App; (d) contacts from your device address book if you grant permission; (e) location data continuously if you enable location features.
+
+3. DATA USE AND SHARING
+We use your data to: improve the App; display targeted advertisements; conduct research; sell aggregated and anonymised data to third-party analytics companies. We may share your personal data with: (a) our parent company, subsidiaries, and affiliates; (b) third-party advertising partners; (c) service providers who may further share data; (d) any buyer in case of merger or acquisition, without notice to you; (e) government authorities when requested, without requiring a court order.
+
+4. INTELLECTUAL PROPERTY IN USER CONTENT
+By uploading or creating content in the App, you grant Petal Technologies a worldwide, perpetual, irrevocable, royalty-free, sublicensable licence to use, reproduce, modify, adapt, publish, translate, distribute, and create derivative works from your content for any purpose, including commercial purposes, without compensation to you.
+
+5. SUBSCRIPTION AND BILLING
+Premium features require a subscription of Rs. 499 per month or Rs. 3,999 per year. Subscriptions auto-renew unless cancelled at least 24 hours before the renewal date. No refunds are issued for partial months or unused subscription periods under any circumstances.
+
+6. ACCOUNT TERMINATION
+We may suspend or terminate your account at any time, for any reason or no reason, without notice. Upon termination, all your data may be permanently deleted within 30 days. We are not liable for any loss arising from account termination.
+
+7. LIMITATION OF LIABILITY
+To the maximum extent permitted by law, Petal Technologies shall not be liable for any direct, indirect, incidental, special, consequential, or exemplary damages, including loss of data or profits, even if advised of the possibility of such damages. Our total liability shall not exceed the amount you paid in the 3 months preceding the claim.
+
+8. ARBITRATION AND CLASS ACTION WAIVER
+All disputes must be resolved by binding arbitration on an individual basis. You waive your right to participate in class action lawsuits or class-wide arbitration. You also waive the right to a jury trial. Arbitration shall take place in Bengaluru and be conducted in English.
+
+9. GOVERNING LAW
+These Terms are governed by the laws of India. You consent to the exclusive jurisdiction of courts in Bengaluru, Karnataka for any matters not subject to arbitration.
+
+Contact: legal@petaltechnologies.com
+Petal Technologies Pvt. Ltd., 200 Electronic City, Bengaluru 560100

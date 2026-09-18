@@ -1,0 +1,15 @@
+{
+  "type": "rental",
+  "protections": [
+    { "id": "r1", "name": "Security deposit limit", "description": "Deposit should not exceed 2 months rent in most states", "critical": true },
+    { "id": "r2", "name": "Move-in / move-out inspection clause", "description": "Both parties should document property condition at start and end", "critical": true },
+    { "id": "r3", "name": "Notice period for entry by landlord", "description": "Landlord must give adequate notice (usually 24-48 hrs) before entering", "critical": true },
+    { "id": "r4", "name": "Rent increase notice period", "description": "How much notice landlord must give before raising rent", "critical": true },
+    { "id": "r5", "name": "Maintenance and repair responsibilities", "description": "Who is responsible for what repairs", "critical": true },
+    { "id": "r6", "name": "Termination notice period", "description": "How much notice either party must give to end the tenancy", "critical": true },
+    { "id": "r7", "name": "Subletting rights", "description": "Whether tenant can sublet the property", "critical": false },
+    { "id": "r8", "name": "Dispute resolution mechanism", "description": "How disputes will be resolved", "critical": false },
+    { "id": "r9", "name": "Auto-renewal clause", "description": "Does the lease auto-renew and under what conditions", "critical": false },
+    { "id": "r10", "name": "Utility responsibility", "description": "Who pays for which utilities", "critical": false }
+  ]
+}

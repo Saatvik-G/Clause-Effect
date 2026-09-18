@@ -1,0 +1,14 @@
+{
+  "type": "loan",
+  "protections": [
+    { "id": "l1", "name": "Interest rate (fixed vs floating)", "description": "Whether interest rate can change and under what conditions", "critical": true },
+    { "id": "l2", "name": "Prepayment penalty", "description": "Charges for paying off loan early", "critical": true },
+    { "id": "l3", "name": "Late payment fees", "description": "Exact fees for missing a payment", "critical": true },
+    { "id": "l4", "name": "Default definition", "description": "What constitutes default beyond missed payments", "critical": true },
+    { "id": "l5", "name": "Acceleration clause", "description": "Whether lender can demand full repayment immediately on default", "critical": true },
+    { "id": "l6", "name": "Collateral / security", "description": "What assets are pledged as security", "critical": true },
+    { "id": "l7", "name": "EMI schedule", "description": "Clear repayment schedule with amounts and dates", "critical": true },
+    { "id": "l8", "name": "Processing and hidden fees", "description": "All fees charged beyond interest", "critical": false },
+    { "id": "l9", "name": "Dispute resolution", "description": "How disputes are handled", "critical": false }
+  ]
+}

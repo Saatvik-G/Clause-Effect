@@ -1,0 +1,54 @@
+FREELANCE SERVICE AGREEMENT
+
+This Freelance Service Agreement ("Agreement") is entered into as of 10 January 2024 between:
+
+Client: Brightwave Digital Pvt. Ltd., 9 Lavelle Road, Bengaluru 560001
+Freelancer: Rohan Kapoor, 55 HSR Layout Sector 2, Bengaluru 560102
+
+1. SERVICES
+Freelancer agrees to design and develop a complete e-commerce website including: homepage, product catalog (up to 200 products), shopping cart, payment gateway integration (Razorpay), and admin dashboard. The final deliverable shall be a live, tested website deployed to the Client's server.
+
+2. TIMELINE
+Project commencement: 15 January 2024
+Draft delivery: 15 February 2024
+Final delivery: 1 March 2024
+Timeline extensions beyond 15 days require written approval from the Client.
+
+3. PAYMENT
+Total Project Fee: Rs. 1,20,000 (Rupees One Lakh Twenty Thousand only)
+Payment schedule:
+- Rs. 30,000 upon signing this Agreement
+- Rs. 50,000 upon delivery of draft
+- Rs. 40,000 upon final delivery and approval
+
+Invoices must be submitted within 7 days of each milestone. The Client shall pay within 30 days of invoice. Payments delayed beyond 30 days shall attract interest at 18% per annum.
+
+4. REVISIONS
+The project fee includes up to 3 (three) rounds of revisions. Additional revisions or changes to scope shall be billed at Rs. 3,500 per hour. Any change requests must be submitted in writing.
+
+5. INTELLECTUAL PROPERTY
+Upon receipt of full payment, all intellectual property rights in the deliverables shall be transferred to the Client. Until full payment is received, the Freelancer retains all rights. The Freelancer may display the work in their portfolio unless the Client requests otherwise in writing.
+
+6. INDEPENDENT CONTRACTOR STATUS
+Freelancer is an independent contractor and not an employee of the Client. Freelancer is responsible for all taxes on their income.
+
+7. NON-SOLICITATION
+During the term of this Agreement and for 12 months thereafter, the Client shall not directly solicit or hire any employees or contractors of the Freelancer without prior written consent.
+
+8. TERMINATION
+Either party may terminate this Agreement with 14 days' written notice. If the Client terminates before completion: all work completed to date shall be delivered to the Client and the Client shall pay for work completed plus a kill fee of 25% of the remaining contract value. If the Freelancer terminates, all deliverables produced to date shall be handed over and a pro-rata refund of pre-payments shall be made.
+
+9. LIMITATION OF LIABILITY
+The Freelancer's total liability under this Agreement shall not exceed the total fees paid under this Agreement. Neither party shall be liable for indirect, consequential, or incidental damages.
+
+10. DISPUTE RESOLUTION
+Disputes shall be resolved through mediation in Bengaluru. If mediation fails, disputes shall go to arbitration under the Arbitration and Conciliation Act, 1996.
+
+11. CONFIDENTIALITY
+Both parties agree to keep all non-public information exchanged under this Agreement confidential for 2 years from the date of disclosure.
+
+Signed:
+
+__________________________        __________________________
+For Brightwave Digital            Rohan Kapoor
+Date: 10 January 2024            Date: 10 January 2024

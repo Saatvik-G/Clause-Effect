@@ -1,0 +1,13 @@
+{
+  "type": "nda",
+  "protections": [
+    { "id": "n1", "name": "Definition of confidential information", "description": "Overly broad definitions can restrict legitimate activities", "critical": true },
+    { "id": "n2", "name": "Duration of confidentiality", "description": "Perpetual NDAs are unusual; 2-5 years is typical", "critical": true },
+    { "id": "n3", "name": "Exclusions from confidentiality", "description": "Standard carve-outs: publicly known info, independently developed, required by law", "critical": true },
+    { "id": "n4", "name": "Permitted disclosures", "description": "Who the receiving party can share info with (e.g., employees, advisors)", "critical": true },
+    { "id": "n5", "name": "Return or destruction of materials", "description": "What happens to confidential materials at end of agreement", "critical": false },
+    { "id": "n6", "name": "Mutual vs. one-way", "description": "Is the NDA mutual or does only one party have obligations", "critical": true },
+    { "id": "n7", "name": "Governing law", "description": "Which jurisdiction's law governs the agreement", "critical": false },
+    { "id": "n8", "name": "Remedies clause", "description": "What remedies are available for breach", "critical": false }
+  ]
+}
