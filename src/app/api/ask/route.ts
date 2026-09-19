@@ -2,8 +2,18 @@ import { NextRequest } from "next/server";
 import { getGeminiClient, getModelName, hasApiKey } from "@/lib/ai/client";
 import { askPrompt } from "@/lib/ai/prompts";
 import { AskResponseSchema } from "@/lib/ai/schemas";
+import { checkRateLimit } from "@/lib/utils/rate-limiter";
 
 export async function POST(req: NextRequest): Promise<Response> {
+  const ip = req.headers.get("x-forwarded-for") ?? "unknown";
+  const rate = checkRateLimit(ip, { maxRequests: 30, storeKey: "ask" });
+  if (!rate.allowed) {
+    return new Response(
+      JSON.stringify({ error: "Too many questions asked. Please wait a moment." }),
+      { status: 429, headers: { "Content-Type": "application/json" } }
+    );
+  }
+
   if (!hasApiKey()) {
     return new Response(
       JSON.stringify({ error: "NO_API_KEY", answer: "Demo mode: API key not configured." }),

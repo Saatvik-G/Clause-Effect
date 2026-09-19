@@ -3,8 +3,18 @@ import { callGeminiWithRetry, hasApiKey } from "@/lib/ai/client";
 import { comparePrompt } from "@/lib/ai/prompts";
 import { CompareResponseSchema } from "@/lib/ai/schemas";
 import type { Clause, CompareResult, ClauseDiff, ChangeType } from "@/lib/types";
+import { checkRateLimit } from "@/lib/utils/rate-limiter";
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
+  const ip = req.headers.get("x-forwarded-for") ?? "unknown";
+  const rate = checkRateLimit(ip, { maxRequests: 30, storeKey: "compare" });
+  if (!rate.allowed) {
+    return NextResponse.json(
+      { error: "Too many comparison requests. Please wait a moment." },
+      { status: 429 }
+    );
+  }
+
   if (!hasApiKey()) {
     return NextResponse.json(
       { error: "NO_API_KEY", message: "API key not configured." },

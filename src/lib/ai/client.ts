@@ -65,13 +65,14 @@ export async function callGeminiWithRetry<T>(
   prompt: string,
   systemInstruction: string,
   validator: (text: string) => T,
-  timeoutMs = 45000
+  timeoutMs = 45000,
+  callFn: (prompt: string, sys: string, timeout: number) => Promise<string> = callGemini
 ): Promise<T> {
   let lastError: unknown;
 
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
-      const text = await callGemini(
+      const text = await callFn(
         attempt === 0
           ? prompt
           : `${prompt}\n\nPrevious attempt failed validation: ${String(lastError)}. Return valid JSON only.`,

@@ -12,29 +12,15 @@ import { checkMissingProtections } from "@/lib/pipeline/missing-protections";
 import { hashContent, normaliseText, truncateText } from "@/lib/utils/helpers";
 import type { Clause, KeyFact, AnalysisResult, DocumentType } from "@/lib/types";
 
-// Simple in-memory rate limiting (per deployment instance)
-const requestCounts = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT = 10; // requests per window
-const RATE_WINDOW_MS = 60 * 1000; // 1 minute
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const entry = requestCounts.get(ip);
-  if (!entry || now > entry.resetAt) {
-    requestCounts.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
-    return true;
-  }
-  if (entry.count >= RATE_LIMIT) return false;
-  entry.count++;
-  return true;
-}
+import { checkRateLimit } from "@/lib/utils/rate-limiter";
 
 const MAX_TEXT_LENGTH = 80000; // ~60 pages
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   const ip = req.headers.get("x-forwarded-for") ?? "unknown";
 
-  if (!checkRateLimit(ip)) {
+  const rate = checkRateLimit(ip, { maxRequests: 30, storeKey: "analyze" });
+  if (!rate.allowed) {
     return NextResponse.json(
       { error: "Too many requests. Please wait a minute and try again." },
       { status: 429 }
