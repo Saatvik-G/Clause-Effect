@@ -371,7 +371,14 @@ function AppShell() {
       {/* Header */}
       <header className="sticky top-0 z-40 bg-[var(--bg)] border-b border-[var(--border)] px-4 py-2.5 flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-3">
-          <Link href="/" className="flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-[var(--pen-blue)] rounded-sm" aria-label="Clause & Effect home">
+          <Link
+            href="/"
+            onClick={() => {
+              window.location.reload();
+            }}
+            className="flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-[var(--pen-blue)] rounded-sm"
+            aria-label="Clause & Effect home"
+          >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <rect x="3" y="2" width="14" height="18" rx="1" stroke="var(--fg)" strokeWidth="1.5" fill="var(--paper)" />
               <line x1="6" y1="7" x2="14" y2="7" stroke="var(--highlight)" strokeWidth="3" />

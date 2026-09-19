@@ -171,8 +171,8 @@ export function CompareWorkspace() {
         </div>
       )}
 
-      {/* Action bar if texts are loaded */}
-      {textV1 && textV2 && (
+      {/* Action bar if texts are loaded but comparison not run yet */}
+      {!result && textV1 && textV2 && (
         <div className="flex items-center justify-between bg-[var(--paper-dark)] p-2 rounded-sm text-xs font-mono">
           <span className="text-[var(--muted)]">Two versions loaded for comparison</span>
           <button
@@ -184,11 +184,34 @@ export function CompareWorkspace() {
         </div>
       )}
 
-      {/* Document slots */}
-      <div className="grid grid-cols-2 gap-4 flex-shrink-0" style={{ maxHeight: result ? "220px" : "auto" }}>
-        <DocumentSlot label="Version 1 (Original Draft)" onText={setTextV1} text={textV1} />
-        <DocumentSlot label="Version 2 (Revised Draft)" onText={setTextV2} text={textV2} />
-      </div>
+      {/* Comparison active action bar */}
+      {result && (
+        <div className="flex items-center justify-between bg-[var(--paper-dark)] p-2.5 rounded-sm text-xs font-mono">
+          <span className="text-[var(--muted)]">Comparing: <strong className="text-[var(--fg)]">Version 1 (Original) vs Version 2 (Revised)</strong></span>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setShowTracingPaper(true)}
+              className="text-[var(--pen-blue)] hover:underline flex items-center gap-1 font-bold"
+            >
+              <span>📑</span> Tracing Paper Split View
+            </button>
+            <button
+              onClick={() => { setResult(null); setTextV1(""); setTextV2(""); }}
+              className="text-[var(--muted)] hover:text-[var(--stamp-red)] transition-colors"
+            >
+              ✕ Start New Comparison
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Document slots - only shown before comparison */}
+      {!result && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-shrink-0">
+          <DocumentSlot label="Version 1 (Original Draft)" onText={setTextV1} text={textV1} />
+          <DocumentSlot label="Version 2 (Revised Draft)" onText={setTextV2} text={textV2} />
+        </div>
+      )}
 
       {/* Compare button */}
       {textV1 && textV2 && !result && (

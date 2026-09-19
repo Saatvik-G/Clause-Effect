@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface TracingPaperOverlayProps {
   textV1: string;
@@ -10,7 +10,14 @@ interface TracingPaperOverlayProps {
 
 export function TracingPaperOverlay({ textV1, textV2, onClose }: TracingPaperOverlayProps) {
   const [sliderPos, setSliderPos] = useState(50); // 0 to 100 percent
-  const [opacity, setOpacity] = useState(85); // 0 to 100 percent
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
 
   return (
     <div
@@ -28,7 +35,7 @@ export function TracingPaperOverlay({ textV1, textV2, onClose }: TracingPaperOve
                 Tracing Paper Split Comparison
               </h2>
               <span className="font-mono text-[0.65rem] text-[var(--muted)]">
-                Drag the divider or adjust transparency to reveal revisions between drafts
+                Drag the slider to compare original vs revised drafts side-by-side
               </span>
             </div>
           </div>
@@ -44,59 +51,49 @@ export function TracingPaperOverlay({ textV1, textV2, onClose }: TracingPaperOve
         {/* Controls Bar */}
         <div className="flex items-center justify-between gap-4 bg-[var(--paper-dark)] p-2.5 rounded-sm mb-3 text-xs font-mono">
           <div className="flex items-center gap-2 flex-1">
-            <span className="text-[var(--muted)]">Tracing Split:</span>
+            <span className="text-[var(--muted)]">Comparison Divider:</span>
             <input
               type="range"
-              min={0}
-              max={100}
+              min={5}
+              max={95}
               value={sliderPos}
               onChange={(e) => setSliderPos(Number(e.target.value))}
-              className="w-48 accent-[var(--pen-blue)] cursor-pointer"
+              className="w-56 accent-[var(--pen-blue)] cursor-pointer"
               aria-label="Tracing paper split slider"
             />
             <span className="text-[var(--fg)] font-bold">{sliderPos}%</span>
           </div>
-
-          <div className="flex items-center gap-2">
-            <span className="text-[var(--muted)]">Paper Opacity:</span>
-            <input
-              type="range"
-              min={20}
-              max={100}
-              value={opacity}
-              onChange={(e) => setOpacity(Number(e.target.value))}
-              className="w-32 accent-[var(--pen-blue)] cursor-pointer"
-              aria-label="Tracing paper opacity slider"
-            />
-            <span className="text-[var(--fg)] font-bold">{opacity}%</span>
+          <div className="flex items-center gap-3 text-[0.7rem]">
+            <span className="text-[var(--stamp-red)] font-semibold">◀ Version 1 (Original)</span>
+            <span className="text-[var(--muted)]">|</span>
+            <span className="text-[var(--safe)] font-semibold">Version 2 (Revised) ▶</span>
           </div>
         </div>
 
         {/* Split View Container */}
         <div className="relative flex-1 border border-[var(--border)] rounded-sm overflow-hidden bg-[var(--paper)]">
-          {/* Base Layer: Version 1 */}
-          <div className="absolute inset-0 p-6 overflow-y-auto font-body text-xs leading-relaxed text-[var(--fg)]">
+          {/* Left Layer: Version 1 (Original Draft) */}
+          <div
+            className="absolute inset-y-0 left-0 p-6 overflow-y-auto font-body text-xs leading-relaxed text-[var(--fg)] bg-[var(--paper)]"
+            style={{ width: `${sliderPos}%` }}
+          >
             <div className="font-mono text-[0.6rem] uppercase tracking-widest text-[var(--stamp-red)] font-bold mb-2">
-              UNDERLAY: Version 1 (Original Draft)
+              Version 1 (Original Draft)
             </div>
             <div className="whitespace-pre-wrap">{textV1}</div>
           </div>
 
-          {/* Tracing Paper Overlay: Version 2 clipped by slider */}
+          {/* Right Layer: Version 2 (Revised Draft) — Solid opaque background */}
           <div
-            className="absolute inset-y-0 right-0 overflow-y-auto font-body text-xs leading-relaxed border-l-2 border-[var(--pen-blue)] shadow-xl transition-all"
+            className="absolute inset-y-0 right-0 p-6 overflow-y-auto font-body text-xs leading-relaxed border-l-2 border-[var(--pen-blue)] shadow-xl bg-[var(--surface)] text-[var(--fg)]"
             style={{
               left: `${sliderPos}%`,
-              backgroundColor: `rgba(243, 237, 224, ${opacity / 100})`,
-              backdropFilter: "blur(0.5px)",
             }}
           >
-            <div className="p-6">
-              <div className="font-mono text-[0.6rem] uppercase tracking-widest text-[var(--safe)] font-bold mb-2">
-                OVERLAY: Version 2 (Revised Draft)
-              </div>
-              <div className="whitespace-pre-wrap">{textV2}</div>
+            <div className="font-mono text-[0.6rem] uppercase tracking-widest text-[var(--safe)] font-bold mb-2">
+              Version 2 (Revised Draft)
             </div>
+            <div className="whitespace-pre-wrap">{textV2}</div>
           </div>
         </div>
 
