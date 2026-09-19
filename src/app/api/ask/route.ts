@@ -70,7 +70,7 @@ export async function POST(req: NextRequest): Promise<Response> {
           controller.enqueue(
             encoder.encode(`data: ${JSON.stringify({ done: true, result: parsed })}\n\n`)
           );
-        } catch (parseErr) {
+        } catch {
           controller.enqueue(
             encoder.encode(
               `data: ${JSON.stringify({

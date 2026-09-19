@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { LEGAL_GLOSSARY, type GlossaryTerm } from "@/lib/glossary/legal-terms";
+import { LEGAL_GLOSSARY } from "@/lib/glossary/legal-terms";
 
 export function GlossaryDrawer() {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [selectedTerm, setSelectedTerm] = useState<GlossaryTerm | null>(null);
 
   const filtered = LEGAL_GLOSSARY.filter((t) =>
     t.term.toLowerCase().includes(search.toLowerCase()) ||

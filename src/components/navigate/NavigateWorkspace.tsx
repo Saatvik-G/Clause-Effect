@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppState } from "@/lib/store/app-store";
 import type { NavigateResult, ActionTicket } from "@/lib/types";
@@ -62,16 +62,11 @@ function ActionTicketCard({ ticket, index, motionEnabled }: { ticket: ActionTick
 export function NavigateWorkspace() {
   const { state } = useAppState();
   const { analysis, navigateResult: stateNav, motionEnabled, isDemo } = state;
-  const [result, setResult] = useState<NavigateResult | null>(
-    isDemo ? DEMO_RENTAL_NAVIGATE : stateNav
-  );
+  const [overrideResult, setOverrideResult] = useState<NavigateResult | null>(null);
+  const result = overrideResult ?? stateNav ?? (isDemo ? DEMO_RENTAL_NAVIGATE : null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"actions" | "questions" | "help">("actions");
-
-  useEffect(() => {
-    if (isDemo && !result) setResult(DEMO_RENTAL_NAVIGATE);
-  }, [isDemo, result]);
 
   async function loadNavigate() {
     if (!analysis) return;
@@ -88,7 +83,7 @@ export function NavigateWorkspace() {
       });
       const data = await res.json();
       if (!res.ok) { setError(data.message ?? "Failed to generate navigation guide."); return; }
-      setResult(data);
+      setOverrideResult(data);
     } catch {
       setError("Network error. Please try again.");
     } finally {

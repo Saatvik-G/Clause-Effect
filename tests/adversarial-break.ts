@@ -1,4 +1,6 @@
-import fs from "fs";
+function getErrMsg(e: unknown): string {
+  return e instanceof Error ? e.message : String(e);
+}
 
 async function runBreakTests() {
   const BASE_LOCAL = "http://localhost:3000";
@@ -24,9 +26,9 @@ async function runBreakTests() {
         ok: res.status === 422,
         responseSnippet: text.slice(0, 80),
       });
-    } catch (e: any) {
-      console.log(`[1] Empty File error: ${e.message}`);
-      results.push({ test: "Empty File Upload", target: base, status: 0, ok: false, responseSnippet: e.message });
+    } catch (e: unknown) {
+      console.log(`[1] Empty File error: ${getErrMsg(e)}`);
+      results.push({ test: "Empty File Upload", target: base, status: 0, ok: false, responseSnippet: getErrMsg(e) });
     }
 
     // 2. Corrupted PDF to /api/extract
@@ -43,9 +45,9 @@ async function runBreakTests() {
         ok: res.status === 422 || res.status === 400 || res.status === 500,
         responseSnippet: text.slice(0, 80),
       });
-    } catch (e: any) {
-      console.log(`[2] Corrupted PDF error: ${e.message}`);
-      results.push({ test: "Corrupted PDF Upload", target: base, status: 0, ok: false, responseSnippet: e.message });
+    } catch (e: unknown) {
+      console.log(`[2] Corrupted PDF error: ${getErrMsg(e)}`);
+      results.push({ test: "Corrupted PDF Upload", target: base, status: 0, ok: false, responseSnippet: getErrMsg(e) });
     }
 
     // 3. File exceeding size limit (>15MB)
@@ -64,8 +66,8 @@ async function runBreakTests() {
         ok: res.status === 413 || res.status === 400 || res.status === 422,
         responseSnippet: text.slice(0, 80),
       });
-    } catch (e: any) {
-      console.log(`[3] Huge File error: ${e.message}`);
+    } catch (e: unknown) {
+      console.log(`[3] Huge File error: ${getErrMsg(e)}`);
       results.push({ test: "Huge File (>15MB)", target: base, status: 413, ok: true, responseSnippet: "Request payload rejected or timed out safely" });
     }
 
@@ -86,9 +88,9 @@ async function runBreakTests() {
         ok: res.status === 400 || res.status === 422,
         responseSnippet: text.slice(0, 80),
       });
-    } catch (e: any) {
-      console.log(`[4] Empty text error: ${e.message}`);
-      results.push({ test: "Empty text to /api/analyze", target: base, status: 0, ok: false, responseSnippet: e.message });
+    } catch (e: unknown) {
+      console.log(`[4] Empty text error: ${getErrMsg(e)}`);
+      results.push({ test: "Empty text to /api/analyze", target: base, status: 0, ok: false, responseSnippet: getErrMsg(e) });
     }
 
     // 5. Grounded Q&A (Answerable)
@@ -112,9 +114,9 @@ async function runBreakTests() {
         ok: res.status === 200,
         responseSnippet: text.slice(0, 80),
       });
-    } catch (e: any) {
-      console.log(`[5] Grounded Ask error: ${e.message}`);
-      results.push({ test: "Grounded Q&A (Answerable)", target: base, status: 0, ok: false, responseSnippet: e.message });
+    } catch (e: unknown) {
+      console.log(`[5] Grounded Ask error: ${getErrMsg(e)}`);
+      results.push({ test: "Grounded Q&A (Answerable)", target: base, status: 0, ok: false, responseSnippet: getErrMsg(e) });
     }
 
     // 6. Unanswerable Question Refusal
@@ -138,9 +140,9 @@ async function runBreakTests() {
         ok: res.status === 200,
         responseSnippet: text.slice(0, 80),
       });
-    } catch (e: any) {
-      console.log(`[6] Grounded Ask error: ${e.message}`);
-      results.push({ test: "Grounded Q&A (Unanswerable Refusal)", target: base, status: 0, ok: false, responseSnippet: e.message });
+    } catch (e: unknown) {
+      console.log(`[6] Grounded Ask error: ${getErrMsg(e)}`);
+      results.push({ test: "Grounded Q&A (Unanswerable Refusal)", target: base, status: 0, ok: false, responseSnippet: getErrMsg(e) });
     }
 
     // 7. Document Compare API
@@ -165,9 +167,9 @@ async function runBreakTests() {
         ok: res.status === 200,
         responseSnippet: text.slice(0, 80),
       });
-    } catch (e: any) {
-      console.log(`[7] Compare API error: ${e.message}`);
-      results.push({ test: "Document Compare API", target: base, status: 0, ok: false, responseSnippet: e.message });
+    } catch (e: unknown) {
+      console.log(`[7] Compare API error: ${getErrMsg(e)}`);
+      results.push({ test: "Document Compare API", target: base, status: 0, ok: false, responseSnippet: getErrMsg(e) });
     }
 
     // 8. Navigation Guide API
@@ -191,9 +193,9 @@ async function runBreakTests() {
         ok: res.status === 200,
         responseSnippet: text.slice(0, 80),
       });
-    } catch (e: any) {
-      console.log(`[8] Navigate API error: ${e.message}`);
-      results.push({ test: "Navigate Roadmap API", target: base, status: 0, ok: false, responseSnippet: e.message });
+    } catch (e: unknown) {
+      console.log(`[8] Navigate API error: ${getErrMsg(e)}`);
+      results.push({ test: "Navigate Roadmap API", target: base, status: 0, ok: false, responseSnippet: getErrMsg(e) });
     }
   }
 

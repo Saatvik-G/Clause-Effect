@@ -2,11 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { normaliseText } from "@/lib/utils/helpers";
 
 const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15 MB
-const ALLOWED_TYPES = [
-  "application/pdf",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-  "text/plain",
-];
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   const contentType = req.headers.get("content-type") ?? "";

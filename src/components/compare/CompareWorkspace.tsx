@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useAppState } from "@/lib/store/app-store";
-import type { CompareResult, AnalysisResult } from "@/lib/types";
+import type { CompareResult } from "@/lib/types";
 import { Stamp } from "@/components/ui/Stamp";
 
 const CHANGE_CHIP_STYLE = {

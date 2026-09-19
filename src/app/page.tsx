@@ -12,6 +12,7 @@ import { DropZone } from "@/components/upload/DropZone";
 import { DecodeWorkspace } from "@/components/decode/DecodeWorkspace";
 import { AskPanel } from "@/components/decode/AskPanel";
 import { CompareWorkspace } from "@/components/compare/CompareWorkspace";
+import Link from "next/link";
 import { NavigateWorkspace } from "@/components/navigate/NavigateWorkspace";
 import { OCRModal } from "@/components/upload/OCRModal";
 import { PIIPreviewModal } from "@/components/upload/PIIPreviewModal";
@@ -19,7 +20,7 @@ import { ShortcutsModal } from "@/components/ui/ShortcutsModal";
 import { DEMO_RENTAL_ANALYSIS, DEMO_SAMPLES, loadDemoAnalysis } from "@/lib/demo/samples";
 import { redactPII, type RedactionResult } from "@/lib/pipeline/redactor";
 import { SUPPORTED_LANGUAGES, TRANSLATIONS, type LanguageCode } from "@/lib/i18n/translations";
-import type { AnalysisResult, PipelineProgress } from "@/lib/types";
+import type { AnalysisResult } from "@/lib/types";
 
 // ─── Marquee ticker data ──────────────────────────────────────────────────────
 const TICKER_ITEMS = [
@@ -370,7 +371,7 @@ function AppShell() {
       {/* Header */}
       <header className="sticky top-0 z-40 bg-[var(--bg)] border-b border-[var(--border)] px-4 py-2.5 flex items-center justify-between flex-wrap gap-2">
         <div className="flex items-center gap-3">
-          <a href="/" className="flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-[var(--pen-blue)] rounded-sm" aria-label="Clause & Effect home">
+          <Link href="/" className="flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-[var(--pen-blue)] rounded-sm" aria-label="Clause & Effect home">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <rect x="3" y="2" width="14" height="18" rx="1" stroke="var(--fg)" strokeWidth="1.5" fill="var(--paper)" />
               <line x1="6" y1="7" x2="14" y2="7" stroke="var(--highlight)" strokeWidth="3" />
@@ -380,7 +381,7 @@ function AppShell() {
               <path d="M17.5 19l1 1 2-2" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span className="font-display font-bold text-base text-[var(--fg)]">Clause & Effect</span>
-          </a>
+          </Link>
           {state.isDemo && <SampleBadge />}
         </div>
 
@@ -598,7 +599,7 @@ function AppShell() {
       />
 
       {/* Keyboard Shortcuts Overlay */}
-      <ShortcutsModal />
+      <ShortcutsModal isOpen={showShortcutsModal} onClose={() => setShowShortcutsModal(false)} />
     </div>
   );
 }

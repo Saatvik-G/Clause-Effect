@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppState } from "@/lib/store/app-store";
 import type { AskResponse } from "@/lib/ai/schemas";
@@ -110,9 +110,21 @@ export function AskPanel() {
             type="button"
             onClick={() => {
               if (typeof window !== "undefined") {
-                const SpeechRecognition =
-                  (window as unknown as { SpeechRecognition?: any; webkitSpeechRecognition?: any }).SpeechRecognition ||
-                  (window as unknown as { SpeechRecognition?: any; webkitSpeechRecognition?: any }).webkitSpeechRecognition;
+                type SpeechEvent = { results: ArrayLike<ArrayLike<{ transcript: string }>> };
+                interface SpeechInstance {
+                  lang: string;
+                  interimResults: boolean;
+                  onstart: (() => void) | null;
+                  onresult: ((event: SpeechEvent) => void) | null;
+                  onerror: (() => void) | null;
+                  start: () => void;
+                }
+                type SpeechConstructor = new () => SpeechInstance;
+                const win = window as unknown as {
+                  SpeechRecognition?: SpeechConstructor;
+                  webkitSpeechRecognition?: SpeechConstructor;
+                };
+                const SpeechRecognition = win.SpeechRecognition || win.webkitSpeechRecognition;
 
                 if (!SpeechRecognition) {
                   setError("Speech recognition is not supported in this browser. Please type your question.");
@@ -124,7 +136,7 @@ export function AskPanel() {
                   recognition.lang = "en-US";
                   recognition.interimResults = false;
                   recognition.onstart = () => setError("Listening... Speak your question now.");
-                  recognition.onresult = (event: any) => {
+                  recognition.onresult = (event: SpeechEvent) => {
                     const transcript = event.results[0][0].transcript;
                     setQuestion(transcript);
                     setError(null);

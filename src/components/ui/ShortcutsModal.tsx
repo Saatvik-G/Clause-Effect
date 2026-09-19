@@ -1,9 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
-export function ShortcutsModal() {
-  const [isOpen, setIsOpen] = useState(false);
+interface ShortcutsModalProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export function ShortcutsModal({ isOpen: controlledIsOpen, onClose: controlledOnClose }: ShortcutsModalProps = {}) {
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+
+  const handleClose = useCallback(() => {
+    if (controlledOnClose) {
+      controlledOnClose();
+    } else {
+      setInternalIsOpen(false);
+    }
+  }, [controlledOnClose]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -17,15 +31,19 @@ export function ShortcutsModal() {
 
       if (e.key === "?" || (e.shiftKey && e.key === "/")) {
         e.preventDefault();
-        setIsOpen((prev) => !prev);
+        if (controlledIsOpen !== undefined) {
+          if (isOpen && controlledOnClose) controlledOnClose();
+        } else {
+          setInternalIsOpen((prev) => !prev);
+        }
       } else if (e.key === "Escape") {
-        setIsOpen(false);
+        handleClose();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [controlledIsOpen, controlledOnClose, handleClose, isOpen]);
 
   if (!isOpen) return null;
 
@@ -56,7 +74,7 @@ export function ShortcutsModal() {
             </h2>
           </div>
           <button
-            onClick={() => setIsOpen(false)}
+            onClick={handleClose}
             className="font-mono text-sm text-[var(--muted)] hover:text-[var(--fg)] px-2 py-1"
             aria-label="Close shortcuts overlay"
           >
